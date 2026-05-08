@@ -24,6 +24,7 @@ async def helper_private(client, message: Message, _):
     await message.reply_text(
         _["help_1"].format(SUPPORT_CHAT),
         reply_markup=keyboard,
+        disable_web_page_preview=True
     )
 
 @app.on_message(filters.command(["help"]) & filters.group & ~BANNED_USERS)
@@ -43,6 +44,7 @@ async def open_help_panel_cb(client, callback_query: CallbackQuery, _):
     await callback_query.edit_message_text(
         _["help_1"].format(SUPPORT_CHAT),
         reply_markup=keyboard,
+        disable_web_page_preview=True
     )
 
 
