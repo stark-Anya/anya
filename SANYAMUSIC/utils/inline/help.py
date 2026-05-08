@@ -19,15 +19,15 @@ from SANYAMUSIC import app
 def help_pannel(_, start: bool = False):
     buttons = [
         [
-            InlineKeyboardButton(text="⌯ ᴍᴜsɪᴄ ⌯", callback_data="help_category music"),
-            InlineKeyboardButton(text="⌯ ᴍᴧηᴧɢᴇᴍᴇηᴛ ⌯", callback_data="help_category management"),
+            InlineKeyboardButton(text="◈ ᴍᴜsɪᴄ ◈", callback_data="help_category music"),
+            InlineKeyboardButton(text="◈ ᴍᴧηᴧɢᴇᴍᴇηᴛ ◈", callback_data="help_category management"),
         ],
         [
-            InlineKeyboardButton(text="⌯ ᴛᴏᴏʟs ⌯", callback_data="help_category tools"),
-            InlineKeyboardButton(text="⌯ ғᴜɴ ⌯", callback_data="help_category fun"),
+            InlineKeyboardButton(text="◈ ᴛᴏᴏʟs ◈", callback_data="help_category tools"),
+            InlineKeyboardButton(text="◈ ғᴜɴ ◈", callback_data="help_category fun"),
         ],
         [
-            InlineKeyboardButton(text="⌯ ʙᴏᴛ sᴇᴛᴛɪηɢs ⌯", callback_data="help_category settings"),
+            InlineKeyboardButton(text="◈ ʙᴏᴛ sᴇᴛᴛɪηɢs ◈", callback_data="help_category settings"),
         ],
     ]
 
