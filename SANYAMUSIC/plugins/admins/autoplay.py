@@ -19,7 +19,7 @@ async def autoplay_command(client, message: Message, _):
     if message.from_user.id not in SUDOERS:
         if not await admin_check(message):
             return await message.reply_text(
-                "❌ Ye command sirf admins ya sudoers ke liye hai."
+                "🚫 ᴏɴʟʏ ᴀᴅᴍɪɴꜱ ᴏʀ ꜱᴜᴅᴏᴇʀꜱ ᴄᴀɴ ᴜꜱᴇ ᴛʜɪꜱ."
             )
 
     chat_id = message.chat.id
@@ -30,8 +30,8 @@ async def autoplay_command(client, message: Message, _):
         status = await is_autoplay(chat_id)
         state = "✅ <b>ON</b>" if status else "❌ <b>OFF</b>"
         return await message.reply_text(
-            f"🎵 <b>Autoplay</b> is currently {state}\n\n"
-            f"Use <code>/autoplay on</code> or <code>/autoplay off</code> to change."
+            f"🎵 <b>ᴀᴜᴛᴏᴘʟᴀʏ</b> ɪꜱ ᴄᴜʀʀᴇɴᴛʟʏ {state}\n\n"
+            f"ᴜꜱᴇ <code>/autoplay on</code> ᴏʀ <code>/autoplay off</code> ᴛᴏ ᴄʜᴀɴɢᴇ ɪᴛ."
         )
 
     action = args[1].lower()
@@ -39,30 +39,30 @@ async def autoplay_command(client, message: Message, _):
     if action == "on":
         if await is_autoplay(chat_id):
             return await message.reply_text(
-                "✅ Autoplay pehle se <b>ON</b> hai is group mein!"
+                "✅ ᴀᴜᴛᴏᴘʟᴀʏ ɪꜱ ᴀʟʀᴇᴀᴅʏ <b>ON</b> ɪɴ ᴛʜɪꜱ ɢʀᴏᴜᴘ !""
             )
         await autoplay_on(chat_id)
         await message.reply_text(
-            "🎵 <b>Autoplay ON</b> kar diya!\n\n"
-            "Ab jab bhi koi song khatam hoga aur queue empty hogi, "
-            "same artist ka next song automatically play hoga. 🔄"
+            "🎵 <b>ᴀᴜᴛᴏᴘʟᴀʏ ON</b> ᴇɴᴀʙʟᴇᴅ !\n\n"
+            "ɴᴏᴡ ᴛʜᴇ ʙᴏᴛ ᴡɪʟʟ ᴀᴜᴛᴏᴍᴀᴛɪᴄᴀʟʟʏ ᴘʟᴀʏ ᴛʜᴇ ɴᴇxᴛ ꜱᴏɴɢ "
+            "ᴡʜᴇɴ ᴛʜᴇ Qᴜᴇᴜᴇ ɪꜱ ᴇᴍᴘᴛʏ. 🔄"
         )
 
     elif action == "off":
         if not await is_autoplay(chat_id):
             return await message.reply_text(
-                "❌ Autoplay pehle se <b>OFF</b> hai is group mein!"
+                "🚫 ᴀᴜᴛᴏᴘʟᴀʏ ɪꜱ ᴀʟʀᴇᴀᴅʏ <b>OFF</b> ɪɴ ᴛʜɪꜱ ɢʀᴏᴜᴘ !"
             )
         await autoplay_off(chat_id)
         await message.reply_text(
-            "🎵 <b>Autoplay OFF</b> kar diya!\n\n"
-            "Ab songs manually play karne padenge. 🎧"
+            "🎵 <b>ᴀᴜᴛᴏᴘʟᴀʏ OFF</b> ᴅɪꜱᴀʙʟᴇᴅ !\n\n"
+            "ɴᴏᴡ ꜱᴏɴɢꜱ ᴍᴜꜱᴛ ʙᴇ ᴘʟᴀʏᴇᴅ ᴍᴀɴᴜᴀʟʟʏ. 🎧"
         )
 
     else:
         await message.reply_text(
-            "❓ Sahi use karo:\n"
-            "<code>/autoplay on</code> — Autoplay ON karo\n"
-            "<code>/autoplay off</code> — Autoplay OFF karo\n"
-            "<code>/autoplay</code> — Current status dekho"
+            "<u>❓ <b>ᴄᴏʀʀᴇᴄᴛ ᴜꜱᴀɢᴇ :</b></u>\n\n"
+            "<code>/autoplay on</code> ➠ ᴇɴᴀʙʟᴇ ᴀᴜᴛᴏᴘʟᴀʏ\n"
+            "<code>/autoplay off</code> ➠ ᴅɪꜱᴀʙʟᴇ ᴀᴜᴛᴏᴘʟᴀʏ\n"
+            "<code>/autoplay</code> ➠ ᴄʜᴇᴄᴋ ᴄᴜʀʀᴇɴᴛ ꜱᴛᴀᴛᴜꜱ"
         )
