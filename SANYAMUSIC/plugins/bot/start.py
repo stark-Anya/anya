@@ -2,7 +2,7 @@ import asyncio
 import aiohttp
 import random
 import time
-from pyrogram import filters
+from pyrogram import filters, enums
 from pyrogram.enums import ChatType, ChatAction
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, Message
 from youtubesearchpython.__future__ import VideosSearch
@@ -173,18 +173,24 @@ async def start_pm(client, message: Message, _):
             # Clone ka custom data fetch karo
             start_data = await get_clone_start(bot_id)
             links = await get_clone_links(bot_id)
+            from SANYAMUSIC.utils.clone_db import get_clone_owner_link
+            owner_link = await get_clone_owner_link(bot_id)
 
-            # Buttons banao
             buttons = []
             try:
                 me = await client.get_me()
                 username = me.username
+                bot_name = me.first_name
             except:
                 username = None
+                bot_name = "Music Bot"
 
             if username:
                 buttons.append([
-                    InlineKeyboardButton("➕ Add to Group", url=f"https://t.me/{username}?startgroup=true")
+                    InlineKeyboardButton(
+                        "➕ Add to Group",
+                        url=f"https://t.me/{username}?startgroup=true"
+                    )
                 ])
 
             support_link = links.get("support") or config.SUPPORT_CHAT
@@ -192,6 +198,17 @@ async def start_pm(client, message: Message, _):
             buttons.append([
                 InlineKeyboardButton("🆘 Support", url=support_link),
                 InlineKeyboardButton("📢 Updates", url=update_link),
+            ])
+
+            # Owner button — clone owner ka link ya default
+            final_owner_link = owner_link or f"https://t.me/{config.OWNER_ID}"
+            buttons.append([
+                InlineKeyboardButton("👤 Owner", url=final_owner_link)
+            ])
+
+            # Help & Commands button
+            buttons.append([
+                InlineKeyboardButton("📖 Help & Commands", callback_data="open_help_panel")
             ])
 
             # Customize button — sirf clone owner ya main owner ko
@@ -219,7 +236,7 @@ async def start_pm(client, message: Message, _):
                 photo,
                 caption=caption,
                 reply_markup=keyboard,
-                parse_mode="html",
+                parse_mode=enums.ParseMode.HTML,
             )
 
         else:
@@ -298,6 +315,3 @@ async def welcome(client, message: Message):
                 await message.stop_propagation()
         except Exception as ex:
             print(ex)
-
-
-
