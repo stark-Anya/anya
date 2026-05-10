@@ -257,14 +257,12 @@ async def _autoplay_next(client, chat_id: int, last_played: dict):
         try:
             msg = await app.send_message(
                 original_chat_id,
-                msg = await app.send_message(
-                    original_chat_id,
                     f"<blockquote expandable>"
                     f"<b>⊱ ᴀᴜᴛᴏᴘʟᴀʏ ꜱᴛᴀʀᴛᴇᴅ ⊰</b>"
                     f"</blockquote>\n"
                     f"<u>🎧 <b>ɴᴏᴡ ᴘʟᴀʏɪɴɢ :</b></u>\n"
                     f"<b>{next_song['title']}</b>",
-                )
+            )
         except Exception:
             msg = None
 
