@@ -31,7 +31,14 @@ font_path = "SANYAMUSIC/assets/hiroko.ttf"
 # Welcome message text (can be overridden by env var)
 TEXT = os.environ.get(
     "APPROVED_WELCOME_TEXT",
-    "**❅─────✧❅✦❅✧─────❅**\n**✬ 𝐖ᴇʟᴄσᴍᴇ {mention} ɪɴ ɴᴇᴡ ɢʀᴏᴜᴘ.**\n**✬ 𝐆ʀσᴜᴘ » {title}**\n\n**💞 ɴᴏᴡ ᴍᴀᴋᴇ ɴᴇᴡ ғʀɪᴇɴᴅs ᴀɴᴅ sᴛᴀʏ ᴀʟᴡᴀʏs ᴏɴʟɪɴᴇ ɪɴ ᴛʜɪs ɢʀᴏᴜᴘ 🥳**\n**❅─────✧❅✦❅✧─────❅**"
+    "**❅─────✧❅✦❅✧─────❅**\n"
+    "**✬ 𝐖ᴇʟᴄσᴍᴇ {mention} ɪɴ ɴᴇᴡ ɢʀᴏᴜᴘ.**\n\n"
+    "**✬ ɴᴀᴍᴇ ›** {name}\n"
+    "**✬ ᴜꜱᴇʀɴᴀᴍᴇ ›** {username}\n"
+    "**✬ ᴜꜱᴇʀ ɪᴅ ›** `{userid}`\n"
+    "**✬ ɢʀᴏᴜᴘ ›** {title}\n\n"
+    "**💞 ɴᴏᴡ ᴍᴀᴋᴇ ɴᴇᴡ ғʀɪᴇɴᴅs ᴀɴᴅ sᴛᴀʏ ᴀʟᴡᴀʏs ᴏɴʟɪɴᴇ 🥳**\n"
+    "**❅─────✧❅✦❅✧─────❅**"
 )
 
 # --------------------------------------------------------------------------------- #
@@ -135,7 +142,13 @@ async def send_welcome_message(chat, user):
         sent_message = await app.send_photo(
             chat_id=chat.id,
             photo=welcome_photo,
-            caption=TEXT.format(mention=user.mention, title=chat.title),
+            caption=TEXT.format(
+              mention=user.mention,
+              title=chat.title,
+              name=user.first_name,
+              username=f"@{user.username}" if user.username else "No Username",
+              userid=user.id,
+            ),
         )
     except Exception as e:
         print(f"[Approve Welcome Error]: {e}")
