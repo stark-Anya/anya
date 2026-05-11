@@ -195,7 +195,7 @@ async def join_request_handler(_, req: ChatJoinRequest):
     if auto_enabled:
         try:
             await app.approve_chat_join_request(chat.id, user.id)
-            approve_msg_doc = await APPROVEMSG_DB.find_one({"chat_id": chat.id}) or {"enabled": True}
+            #approve_msg_doc = await APPROVEMSG_DB.find_one({"chat_id": chat.id}) or {"enabled": True}
             approve_msg_enabled = approve_msg_doc.get("enabled", True)
             #if approve_msg_enabled:
               #  await send_welcome_message(chat, user)
