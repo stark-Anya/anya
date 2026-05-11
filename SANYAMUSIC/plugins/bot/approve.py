@@ -65,10 +65,13 @@ async def get_userinfo_img(
 ):
     bg = Image.open(bg_path).convert("RGBA")
 
+    # -------------------------------------------- #
+    # PROFILE PHOTO
     if profile_path:
         try:
             img = Image.open(profile_path).convert("RGBA")
 
+            # Circle mask
             mask = Image.new("L", img.size, 0)
             draw = ImageDraw.Draw(mask)
             draw.pieslice([(0, 0), img.size], 0, 360, fill=255)
@@ -76,37 +79,48 @@ async def get_userinfo_img(
             circular_img = Image.new("RGBA", img.size, (0, 0, 0, 0))
             circular_img.paste(img, (0, 0), mask)
 
-            resized = circular_img.resize((400, 400))
-            bg.paste(resized, (440, 160), resized)
+            # Resize profile
+            resized = circular_img.resize((420, 420))
 
-        except Exception:
-            pass
+            # LEFT BLUE CIRCLE POSITION
+            bg.paste(resized, (110, 145), resized)
 
+        except Exception as e:
+            print(f"[Profile Error]: {e}")
+
+    # -------------------------------------------- #
+    # DRAW TEXT
     img_draw = ImageDraw.Draw(bg)
 
-    font = get_font(42, font_path)
+    font_big = get_font(55, font_path)
+    font_small = get_font(40, font_path)
 
+    # NAME
     img_draw.text(
-        (470, 610),
-        f"NAME : {name}",
-        font=font,
+        (700, 300),
+        f"{name}",
+        font=font_big,
         fill=(255, 255, 255),
     )
 
+    # USERNAME
     img_draw.text(
-        (470, 670),
-        f"USERNAME : {username}",
-        font=font,
+        (700, 390),
+        f"{username}",
+        font=font_small,
         fill=(255, 255, 255),
     )
 
+    # USER ID
     img_draw.text(
-        (470, 730),
-        f"USER ID : {user_id}",
-        font=font,
+        (700, 470),
+        f"ID : {user_id}",
+        font=font_small,
         fill=(255, 255, 255),
     )
 
+    # -------------------------------------------- #
+    # SAVE
     path = f"./userinfo_img_{user_id}.png"
     bg.save(path)
 
