@@ -161,7 +161,7 @@ async def send_welcome_message(chat, user):
             os.remove(welcome_photo)
 
         if sent_message:
-            asyncio.create_task(delete_message_after(sent_message, 15))
+            asyncio.create_task(delete_message_after(sent_message, 120))
 
 # --------------------------------------------------------------------------------- #
 # Command Handlers
