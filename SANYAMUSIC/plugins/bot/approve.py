@@ -31,14 +31,16 @@ font_path = "SANYAMUSIC/assets/hiroko.ttf"
 # Welcome message text (can be overridden by env var)
 TEXT = os.environ.get(
     "APPROVED_WELCOME_TEXT",
-    "**❅─────✧❅✦❅✧─────❅**\n"
-    "**✬ 𝐖ᴇʟᴄσᴍᴇ {mention} ɪɴ ɴᴇᴡ ɢʀᴏᴜᴘ.**\n\n"
-    "**✬ ɴᴀᴍᴇ ›** {name}\n"
-    "**✬ ᴜꜱᴇʀɴᴀᴍᴇ ›** {username}\n"
-    "**✬ ᴜꜱᴇʀ ɪᴅ ›** `{userid}`\n"
-    "**✬ ɢʀᴏᴜᴘ ›** {title}\n\n"
-    "**💞 ɴᴏᴡ ᴍᴀᴋᴇ ɴᴇᴡ ғʀɪᴇɴᴅs ᴀɴᴅ sᴛᴀʏ ᴀʟᴡᴀʏs ᴏɴʟɪɴᴇ 🥳**\n"
-    "**❅─────✧❅✦❅✧─────❅**"
+    "<blockquote><b>"
+    "❅─────✧❅✦❅✧─────❅\n"
+    "✬ Welcome {mention} in new group.\n\n"
+    "✬ Name › {name}\n"
+    "✬ Username › {username}\n"
+    "✬ User ID › <code>{userid}</code>\n"
+    "✬ Group › {title}\n\n"
+    "💞 Now make new friends and stay always online in this group 🥳\n"
+    "❅─────✧❅✦❅✧─────❅"
+    "</b></blockquote>"
 )
 
 # --------------------------------------------------------------------------------- #
@@ -149,6 +151,7 @@ async def send_welcome_message(chat, user):
               username=f"@{user.username}" if user.username else "No Username",
               userid=user.id,
             ),
+            parse_mode=enums.ParseMode.HTML
         )
     except Exception as e:
         print(f"[Approve Welcome Error]: {e}")
