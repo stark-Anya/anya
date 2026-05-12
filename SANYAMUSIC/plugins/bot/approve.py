@@ -98,15 +98,15 @@ async def get_userinfo_img(
     # NAME
     img_draw.text(
         (700, 300),
-        f"{name}",
-        font=font_big,
+        f"NAME : {name}",
+        font=font_small,
         fill=(255, 255, 255),
     )
 
     # USERNAME
     img_draw.text(
         (700, 390),
-        f"{username}",
+        f"USER : {username}",
         font=font_small,
         fill=(255, 255, 255),
     )
