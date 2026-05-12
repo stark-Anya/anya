@@ -80,10 +80,10 @@ async def get_userinfo_img(
             circular_img.paste(img, (0, 0), mask)
 
             # Resize profile
-            resized = circular_img.resize((420, 420))
+            resized = circular_img.resize((510, 510))
 
             # LEFT BLUE CIRCLE POSITION
-            bg.paste(resized, (110, 145), resized)
+            bg.paste(resized, (70, 105), resized)
 
         except Exception as e:
             print(f"[Profile Error]: {e}")
@@ -100,7 +100,7 @@ async def get_userinfo_img(
         (700, 300),
         f"NAME : {name}",
         font=font_small,
-        fill=(255, 255, 255),
+        fill=(235, 235, 235),
     )
 
     # USERNAME
@@ -108,7 +108,7 @@ async def get_userinfo_img(
         (700, 390),
         f"USER : {username}",
         font=font_small,
-        fill=(255, 255, 255),
+        fill=(235, 235, 235),
     )
 
     # USER ID
@@ -116,7 +116,7 @@ async def get_userinfo_img(
         (700, 470),
         f"ID : {user_id}",
         font=font_small,
-        fill=(255, 255, 255),
+        fill=(235, 235, 235),
     )
 
     # -------------------------------------------- #
