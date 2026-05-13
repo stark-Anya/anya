@@ -50,7 +50,7 @@ Features<p>
 𝑆𝑡𝑎𝑟𝑡 𝑆𝑎𝑛𝑦𝑎 𝐵𝑜𝑡 𝑡𝑜 𝑠𝑒𝑒 𝑎𝑙𝑙 𝑐𝑜𝑚𝑚𝑎𝑛𝑑𝑠 𝑜𝑟 𝑠𝑒𝑒 commands.txt 𝑓𝑖𝑙𝑒
 </div>
 
- [@𝑆𝑎𝑛𝑦𝑎](https://t.me/SanyaxMusicBot) & [commands.txt](https://github.com/urstark/sanyamusic/blob/main/commands.txt)
+ [@𝑨𝒏𝒚𝒂](https://t.me/AnyaBeats_bot) & [commands.txt](https://github.com/urstark/sanyamusic/blob/main/commands.txt)
 
 :⧽ Channel Support
 Bot also Supported with Channels. Just add bot and assistant to the Channel as Admin. </details>
@@ -82,7 +82,7 @@ Press the below button to Fast deploy on Heroku/Raiwlay
 Either you could locally host or deploy on [Heroku](https://heroku.com)
 ### 💜 Heroku
 
-<p align="center"><a href="https://dashboard.heroku.com/new?template=https://github.com/urSTARK/Sanyamusic"> <img src="https://www.herokucdn.com/deploy/button.svg"></a></p>
+<p align="center"><a href="https://dashboard.heroku.com/new?template=https://github.com/stark-Anya/anya"> <img src="https://www.herokucdn.com/deploy/button.svg"></a></p>
 
 then goto the <a href="#mandatory-vars">variables tab</a> for more info on setting up environmental variables. 
 </details>
@@ -394,15 +394,15 @@ To get an instant result do /reboot in chat of logger .
 
 **Main Developer**
 
-[![urstark](https://img.shields.io/badge/urstark-black?style=for-the-badge&logo=github)](https://github.com/urstark)
+[![urstark](https://img.shields.io/badge/ur_starkz-black?style=for-the-badge&logo=github)](https://github.com/ur_starkz)
 
 **Special Thanks to All Contributors**
 
 </div>
 
 
-- [Stark](https://github.com/urstark)
-- [Telegram](https://t.me/cuxrs)
+- [Stark](https://github.com/stark-Anya)
+- [Telegram](https://t.me/ur_starkz)
 - Everyone In This Journey !
 
 <img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif">
