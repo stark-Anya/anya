@@ -10,19 +10,18 @@ bg_path = "SANYAMUSIC/assets/userinfo.png"
 font_path = "SANYAMUSIC/assets/hiroko.ttf"
 DEFAULT_PROFILE_IMAGE = "SANYAMUSIC/assets/upic.png"
 
-INFO_TEXT = """<b>
-[ᯤ] 𝗨𝗦𝗘𝗥 𝗜𝗡𝗙𝗢𝗥𝗠𝗔𝗧𝗜𝗢𝗡 [ᯤ]
-
-[🍹] ᴜsᴇʀ ɪᴅ ‣ <code>{}</code>
+INFO_TEXT = """
+<blockquote><b>[ᯤ] 𝗨𝗦𝗘𝗥 𝗜𝗡𝗙𝗢𝗥𝗠𝗔𝗧𝗜𝗢𝗡 [ᯤ]</b></blockquote>
+<blockquote>[🍹] ᴜsᴇʀ ɪᴅ ‣ <code>{}</code>
 [💓] ғɪʀsᴛ ɴᴀᴍᴇ ‣ {}
 [💗] ʟᴀsᴛ ɴᴀᴍᴇ ‣ {}
-[🍷] ᴜsᴇʀɴᴀᴍᴇ ‣ <code>{}</code>
-[🍬] ᴍᴇɴᴛɪᴏɴ ‣ {}
+[🍷] ᴜsᴇʀɴᴀᴍᴇ ‣ <code>{}</code></blockquote>
+<blockquote >[🍬] ᴍᴇɴᴛɪᴏɴ ‣ {}
 [🍁] ʟᴀsᴛ sᴇᴇɴ ‣ {}
 [🎫] ᴅᴄ ɪᴅ ‣ {}
-[🗨️] ʙɪᴏ ‣ <code>{}</code>
-
-☉━━☉━━☉━侖━☉━━☉━━☉</b>"""
+[🗨️] ʙɪᴏ ‣ {}</blockquote>
+<blockquote><b>❖ 𝐌ᴧᴅє ʙʏ »</b> <a href="https://t.me/Anya_Bots"> ˹𝐀ɴʏᴀ ꭙ 𝐁ᴏᴛs˼</a></blockquote>
+"""
 
 
 def get_font(size):
@@ -97,7 +96,7 @@ async def userinfo(_, message: Message):
         last_name = user_info.last_name or "No last name"
         username = f"@{user_info.username}" if user_info.username else "No Username"
         mention = user.mention
-        bio = user_info.bio or "No bio set"
+        bio = user_info.bio or "ɴᴏ ʙɪᴏ sᴇᴛ"
 
         # User ka actual PFP download karo
         pfp_path = DEFAULT_PROFILE_IMAGE
