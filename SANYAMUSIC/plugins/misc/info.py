@@ -74,7 +74,7 @@ async def userstatus(user_id):
         return "Unknown"
 
 
-@app.on_message(filters.command(["info", "userinfo"], prefixes=["/", "!", "%", ",", "", ".", "@", "#"]))
+@app.on_message(filters.command(["info", "userinfo"], prefixes=["/", "!", "%", ",", ".", "@", "#"]))
 async def userinfo(_, message: Message):
     chat_id = message.chat.id
 
