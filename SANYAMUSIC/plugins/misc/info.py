@@ -122,6 +122,7 @@ async def userinfo(_, message: Message):
             ),
             parse_mode=enums.ParseMode.HTML,
             reply_to_message_id=message.id,
+            has_spoiler=True
         )
 
     except Exception as e:
