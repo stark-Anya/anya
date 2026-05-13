@@ -249,9 +249,9 @@ async def _autoplay_next(client, chat_id: int, last_played: dict):
         try:
             msg = await app.send_message(
                 original_chat_id,
-                f"🔄 <b>Autoplay</b>\n\n"
-                f"🎵 <b>{next_song['title']}</b>\n"
-                f"🎤 <i>{artist or 'Auto Selected'}</i>"
+                f"<blockquote><b>✬ <u>𝐀ɴʏᴀ’ꜱ ʟɪᴛᴛʟᴇ ɢɪꜰᴛ ꜰᴏʀ ʏᴏᴜ 🎧</u></b></blockquote>\n"
+                f"<blockquote><b>✬ 𝐒ᴏɴɢ :</b> {next_song['title']}</blockquote>\n"
+                f"<blockquote><b>✬ 𝐀ʀᴛɪsᴛ :</b> <i>{artist or 'Auto Selected'}</i></blockquote>"
                 f"{mood_text}",
             )
             async def _del():
