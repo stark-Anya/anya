@@ -69,7 +69,7 @@ async def whois_handler(_, message: Message):
             f"<blockquote>"
             f"❖ <b>ʙɪᴏ:</b> <code>{bio}</code>"
             f"</blockquote>\n"
-            f"<blockquote> </blockquote>"
+            f"<blockquote>❖ 𝐌ᴧᴅє ʙʏ » <a href=\"https://t.me/Anya_Bots\">˹𝐀ɴʏᴀ ꭙ 𝐁ᴏᴛ𝐬˼ </blockquote>"
         )
 
         profile_url = f"https://t.me/{user.username}" if user.username else f"tg://openmessage?user_id={user.id}"
