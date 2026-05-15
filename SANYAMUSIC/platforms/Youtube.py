@@ -22,6 +22,103 @@ class YouTubeAPI:
         self.regex = r"(?:youtube\.com|youtu\.be)"
         self.listbase = "https://youtube.com/playlist?list="
 
+    async def _saavn_download(self, title: str) -> str | None:
+        """JioSaavn se audio file download karo — no watermark."""
+        try:
+            import re as _re
+            import hashlib
+            import urllib.request
+
+            # Title clean karo
+            clean = _re.sub(r'\([^)]*\)|\[[^\]]*\]', '', title)
+            clean = _re.sub(r'\|.*', '', clean).strip()
+            if not clean:
+                return None
+
+            # Search on JioSaavn
+            params = {
+                "__call": "search.getResults",
+                "q": clean,
+                "_format": "json",
+                "_marker": "0",
+                "api_version": "4",
+                "cc": "in",
+                "ctx": "web6dot0",
+            }
+            import aiohttp as _aiohttp
+            async with _aiohttp.ClientSession() as session:
+                async with session.get(
+                    "https://www.jiosaavn.com/api.php",
+                    params=params,
+                    timeout=_aiohttp.ClientTimeout(total=8),
+                ) as resp:
+                    if resp.status != 200:
+                        return None
+                    data = await resp.json(content_type=None)
+                    results = data.get("results", [])
+                    if not results:
+                        return None
+
+                encrypted_url = results[0].get("more_info", {}).get("encrypted_media_url", "")
+                if not encrypted_url:
+                    return None
+
+                # Get stream URL
+                auth_params = {
+                    "__call": "song.generateAuthToken",
+                    "url": encrypted_url,
+                    "bitrate": "320",
+                    "api_version": "4",
+                    "_format": "json",
+                    "ctx": "web6dot0",
+                    "_marker": "0",
+                }
+                async with session.get(
+                    "https://www.jiosaavn.com/api.php",
+                    params=auth_params,
+                    timeout=_aiohttp.ClientTimeout(total=8),
+                ) as r2:
+                    if r2.status != 200:
+                        return None
+                    auth_data = await r2.json(content_type=None)
+                    stream_url = auth_data.get("auth_url", "").replace("http://", "https://")
+                    if not stream_url:
+                        return None
+
+            # Download file
+            os.makedirs("downloads", exist_ok=True)
+            fname = hashlib.md5(clean.encode()).hexdigest()
+            fpath = f"downloads/{fname}.mp3"
+
+            if os.path.exists(fpath) and os.path.getsize(fpath) > 10000:
+                LOGGER(__name__).info(f"JioSaavn: Cache hit '{clean}'")
+                return fpath
+
+            def _dl():
+                headers = {
+                    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
+                    "Accept": "*/*",
+                    "Referer": "https://www.jiosaavn.com/",
+                }
+                req = urllib.request.Request(stream_url, headers=headers)
+                with urllib.request.urlopen(req, timeout=30) as r, open(fpath, "wb") as f:
+                    f.write(r.read())
+
+            loop = asyncio.get_running_loop()
+            await loop.run_in_executor(None, _dl)
+
+            if os.path.exists(fpath) and os.path.getsize(fpath) > 10000:
+                LOGGER(__name__).info(f"JioSaavn: Downloaded '{clean}' 320kbps")
+                return fpath
+
+            if os.path.exists(fpath):
+                os.remove(fpath)
+            return None
+
+        except Exception as e:
+            LOGGER(__name__).warning(f"JioSaavn download error: {e}")
+            return None
+
     async def _api_download(self, video_id: str, video: bool = False) -> str | None:
         """ShrutiBots API se stream URL lo."""
         stream_type = "video" if video else "audio"
@@ -262,15 +359,25 @@ class YouTubeAPI:
             await loop.run_in_executor(None, song_audio_dl)
             return f"downloads/{title}.mp3"
 
-        # /play — ShrutiBots primary, yt-dlp fallback
+        # /play (audio) → JioSaavn primary (no watermark)
+        # /vplay (video) → ShrutiBots API
         video_id = link.split("v=")[-1].split("&")[0] if "v=" in link else link.split("/")[-1]
 
-        # Primary: ShrutiBots
+        if not video:
+            # Audio — JioSaavn se try karo
+            try:
+                saavn_path = await self._saavn_download(title or video_id)
+                if saavn_path:
+                    return saavn_path, True
+            except Exception as e:
+                LOGGER(__name__).warning(f"JioSaavn failed: {e}")
+
+        # Video ya JioSaavn fail — ShrutiBots API
         api_url = await self._api_download(video_id, video=bool(video))
         if api_url:
             return api_url, None
 
-        # Fallback: yt-dlp stream
+        # Last resort — yt-dlp
         stream_url = await loop.run_in_executor(
             None, lambda: self._ytdlp_stream(link, video=bool(video))
         )
