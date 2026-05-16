@@ -79,10 +79,10 @@ def stream_markup_timer(_, chat_id, played, dur, autoplay_on=False):
             )
         ],
         [
-            InlineKeyboardButton(text="▷", callback_data=f"ADMIN Resume|{chat_id}", style=ButtonStyle.SUCCESS),
-            InlineKeyboardButton(text="II", callback_data=f"ADMIN Pause|{chat_id}", style=ButtonStyle.SUCCESS),
-            InlineKeyboardButton(text="‣‣I", callback_data=f"ADMIN Skip|{chat_id}", style=ButtonStyle.DANGER),
-            InlineKeyboardButton(text="▢", callback_data=f"ADMIN Stop|{chat_id}", style=ButtonStyle.DANGER),
+            InlineKeyboardButton(text="▷", callback_data=f"ADMIN Resume|{chat_id}", style=ButtonStyle.PRIMARY),
+            InlineKeyboardButton(text="II", callback_data=f"ADMIN Pause|{chat_id}", style=ButtonStyle.PRIMARY),
+            InlineKeyboardButton(text="‣‣I", callback_data=f"ADMIN Skip|{chat_id}", style=ButtonStyle.PRIMARY),
+            InlineKeyboardButton(text="▢", callback_data=f"ADMIN Stop|{chat_id}", style=ButtonStyle.PRIMARY),
         ],
         [
             InlineKeyboardButton(text="« 10s", callback_data=f"ADMIN SeekBack|{chat_id}", style=ButtonStyle.PRIMARY),
@@ -90,7 +90,7 @@ def stream_markup_timer(_, chat_id, played, dur, autoplay_on=False):
             InlineKeyboardButton(text="10s »", callback_data=f"ADMIN Seek|{chat_id}", style=ButtonStyle.PRIMARY),
         ],
         [
-            InlineKeyboardButton(text=ap_text, callback_data=f"ADMIN Autoplay|{chat_id}", style=ButtonStyle.PRIMARY),
+            InlineKeyboardButton(text=ap_text, callback_data=f"ADMIN Autoplay|{chat_id}", style=ButtonStyle.SUCCESS),
         ],
         [
             InlineKeyboardButton(text=_["CLOSE_BUTTON"], callback_data="close", style=ButtonStyle.DANGER),
@@ -103,10 +103,10 @@ def stream_markup(_, chat_id, autoplay_on=False):
     ap_text = "🎧 ᴀᴜᴛᴏᴘʟᴀʏ ᴏɴ ➠ ᴏꜰꜰ" if autoplay_on else "🎧 ᴀᴜᴛᴏᴘʟᴀʏ ᴏꜰꜰ ➠ ᴏɴ"
     buttons = [
         [
-            InlineKeyboardButton(text="▷", callback_data=f"ADMIN Resume|{chat_id}", style=ButtonStyle.SUCCESS),
-            InlineKeyboardButton(text="II", callback_data=f"ADMIN Pause|{chat_id}", style=ButtonStyle.SUCCESS),
-            InlineKeyboardButton(text="‣‣I", callback_data=f"ADMIN Skip|{chat_id}", style=ButtonStyle.DANGER),
-            InlineKeyboardButton(text="▢", callback_data=f"ADMIN Stop|{chat_id}", style=ButtonStyle.DANGER),
+            InlineKeyboardButton(text="▷", callback_data=f"ADMIN Resume|{chat_id}", style=ButtonStyle.PRIMARY),
+            InlineKeyboardButton(text="II", callback_data=f"ADMIN Pause|{chat_id}", style=ButtonStyle.PRIMARY),
+            InlineKeyboardButton(text="‣‣I", callback_data=f"ADMIN Skip|{chat_id}", style=ButtonStyle.PRIMARY),
+            InlineKeyboardButton(text="▢", callback_data=f"ADMIN Stop|{chat_id}", style=ButtonStyle.PRIMARY),
         ],
         [
             InlineKeyboardButton(text="◁ 10s", callback_data=f"ADMIN SeekBack|{chat_id}", style=ButtonStyle.PRIMARY),
@@ -114,7 +114,7 @@ def stream_markup(_, chat_id, autoplay_on=False):
             InlineKeyboardButton(text="10s ▷", callback_data=f"ADMIN Seek|{chat_id}", style=ButtonStyle.PRIMARY),
         ],
         [
-            InlineKeyboardButton(text=ap_text, callback_data=f"ADMIN Autoplay|{chat_id}", style=ButtonStyle.PRIMARY),
+            InlineKeyboardButton(text=ap_text, callback_data=f"ADMIN Autoplay|{chat_id}", style=ButtonStyle.SUCCESS),
         ],
         [
             InlineKeyboardButton(text=_["CLOSE_BUTTON"], callback_data="close", style=ButtonStyle.DANGER),
